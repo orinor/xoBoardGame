@@ -1,0 +1,44 @@
+<main>
+  <h1>איקס עיגול</h1>
+
+  <div class="score">
+    <span>X: {{ score().X }}</span>
+    <span>תיקו: {{ score().draw }}</span>
+    <span>O: {{ score().O }}</span>
+  </div>
+
+  <p class="status">{{ status() }}</p>
+
+  <div class="board">
+    @for (cell of board(); track $index) {
+      <button
+        class="cell"
+        [class.x]="cell === 'X'"
+        [class.o]="cell === 'O'"
+        [class.win]="isWinCell($index)"
+        [disabled]="over() || !!cell"
+        (click)="play($index)"
+      >
+        {{ cell }}
+      </button>
+    }
+  </div>
+
+  <div class="actions">
+    <button (click)="reset()">משחק חדש</button>
+    <button class="secondary" (click)="clearHistory()">נקה היסטוריה</button>
+  </div>
+
+  @if (saveError()) {
+    <p class="error">לא ניתן לשמור/לטעון תוצאות – ודא שהשרת (npm run server) רץ.</p>
+  }
+
+  @if (recent().length) {
+    <h2>היסטוריית משחקים</h2>
+    <ul class="history">
+      @for (g of recent(); track g.id) {
+        <li>#{{ g.id }} – {{ g.result === 'draw' ? 'תיקו' : 'ניצחון ' + g.result }} ({{ g.playedAt | date: 'dd/MM/yyyy HH:mm' }})</li>
+      }
+    </ul>
+  }
+</main>

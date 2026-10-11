@@ -1,0 +1,14 @@
+main { max-width: 360px; margin: 2rem auto; font-family: system-ui, sans-serif; text-align: center; direction: rtl; }
+.score { display: flex; justify-content: space-around; font-weight: 600; }
+.status { font-size: 1.3rem; margin: 1rem 0; }
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; direction: ltr; }
+.cell { aspect-ratio: 1; font-size: 3rem; font-weight: 700; border: 2px solid #444; border-radius: 8px; background: #fff; cursor: pointer; }
+.cell:disabled { cursor: default; }
+.cell.x { color: #d33; }
+.cell.o { color: #26c; }
+.cell.win { background: #cfc; }
+.actions { margin-top: 1rem; display: flex; gap: 8px; justify-content: center; }
+.actions button { padding: .5rem 1rem; border-radius: 6px; border: 0; background: #26c; color: #fff; cursor: pointer; }
+.actions .secondary { background: #888; }
+.error { color: #c00; }
+.history { list-style: none; padding: 0; max-height: 180px; overflow: auto; text-align: right; }
